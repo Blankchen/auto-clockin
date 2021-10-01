@@ -1,5 +1,6 @@
-參考 https://juejin.cn/post/6844904097867366414
-###　安裝步驟
+### 參考 
+https://juejin.cn/post/6844904097867366414
+### 安裝步驟
 1. 專案內 
 ```
 npm install
