@@ -18,3 +18,15 @@ pm2 start cron
 ```
 pm2 log
 ```
+
+### pm2 補充
+```
+# 列出服務清單
+pm2 ls
+# 停止 id=0 的服務
+pm2 stop 0
+# 啟動 id=0 的服務
+pm2 start 0
+# 重新載入 id=0 的服務
+pm2 reload 0
+```
