@@ -17,7 +17,8 @@ const clockInJob = (success, fail) => {
         "0 30 9 * * 1-5",
         async onComplete => {
             // 新增 十分鐘內的 隨機延遲
-            await new Promise(r => setTimeout(r, 10 * 60 * 1000 * Math.random()));
+            const randomTime = Math.random() * 10 * 60 + Math.random() * 60
+            await new Promise(r => setTimeout(r, randomTime * 1000));
             // 主任务, 参数分别代表任务时间, 任务, 任务完成回调
             const _today = new Date().getDate(); //任务执行时的日期
             if (today !== _today) {
@@ -56,7 +57,8 @@ const clockOutJob = (success, fail) => {
         "0 30 18 * * 1-5",
         async onComplete => {
             // 新增 十分鐘內的 隨機延遲
-            await new Promise(r => setTimeout(r, 10 * 60 * 1000 * Math.random()));
+            const randomTime = Math.random() * 10 * 60 + Math.random() * 60
+            await new Promise(r => setTimeout(r, randomTime * 1000));
             // 主任务, 参数分别代表任务时间, 任务, 任务完成回调
             const _today = new Date().getDate(); //任务执行时的日期
             if (today !== _today) {
