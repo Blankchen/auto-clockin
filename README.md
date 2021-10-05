@@ -34,3 +34,4 @@ pm2 reload 0
 ## 更新日誌
 2021-10-05
 - 新增國定假日 補班日 計算
+- 新增 randomMinutes, clockInCronJobm, clockOutCronJob 至環境變數

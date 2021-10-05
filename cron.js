@@ -1,21 +1,22 @@
 const CronJob = require("cron").CronJob; // 引入
 const index = require("./index"); // 定时每次执行的任务
 const utils = require('./utils/utils')
+require('dotenv').config();
 
 console.log("cron job 開始");
+const config = {
+    randomMinutes: process.env["randomMinutes"] || 10,
+    clockInCronJob: process.env["clockInCronJob"] || "0 40 9 * * 1-6",
+    clockOutCronJob: process.env["clockOutCronJob"] || "0 30 18 * * 1-6",
+}
 
 const clockInJob = (success, fail) => {
     // success成功回调, fail失败回调
     let succeed = false; // 今天是否打卡成功
     let today = new Date().getDate(); // 今天的日期
-    // Seconds: 0-59
-    // Minutes: 0-59
-    // Hours: 0-23
-    // Day of Month: 1-31
-    // Months: 0-11 (Jan-Dec)
-    // Day of Week: 0-6 (Sun-Sat)
+   
     const job = new CronJob(
-        "0 35 9 * * 1-6",
+        config.clockInCronJob,
         async onComplete => {
             // 計算假日
             if (utils.isHoliday()) {
@@ -24,7 +25,7 @@ const clockInJob = (success, fail) => {
             // 主任务, 参数分别代表任务时间, 任务, 任务完成回调
             const _today = new Date().getDate(); //任务执行时的日期
             // 新增 隨機延遲
-            await utils.randomSleep(5);
+            await utils.randomSleep(config.randomMinutes);
 
             if (today !== _today) {
                 // 如果任务执行的日期和之前的日期不一样说明已经是第二天了
@@ -59,7 +60,7 @@ const clockOutJob = (success, fail) => {
     let succeed = false; // 今天是否打卡成功
     let today = new Date().getDate(); // 今天的日期
     const job = new CronJob(
-        "0 30 18 * * 1-6",
+        config.clockOutCronJob,
         async onComplete => {
             // 計算假日
             if (utils.isHoliday()) {
@@ -68,7 +69,7 @@ const clockOutJob = (success, fail) => {
             // 主任务, 参数分别代表任务时间, 任务, 任务完成回调
             const _today = new Date().getDate(); //任务执行时的日期
             // 新增 隨機延遲
-            await utils.randomSleep(5);
+            await utils.randomSleep(config.randomMinutes);
 
             if (today !== _today) {
                 // 如果任务执行的日期和之前的日期不一样说明已经是第二天了
