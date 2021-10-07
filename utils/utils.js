@@ -49,7 +49,7 @@ const isHoliday = (today = new Date()) => {
  * @returns 
  */
 const randomSleep = async (minutes) => {
-    const randomTime = Math.random() * minutes * 60 + Math.random() * 60
+    const randomTime = Math.random() * (minutes - 1) * 60 + Math.random() * 60
     return new Promise(r => setTimeout(r, randomTime * 1000));
 }
 
